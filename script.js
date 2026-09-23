@@ -22,16 +22,16 @@ function appendValue(num) {
 function setOperator(operator) {
     if (currentInput === '' && previousInput === '') return;
 
-    // If a user clicks an operator after completing a previous equation
-    if (currentInput !== '' && previousInput !== '' && activeOperator) {
-        calculate();
-    }
-
     // Switch operator if they click a different one before typing next number
     if (currentInput === '' && activeOperator) {
         activeOperator = operator;
         updateDisplay();
         return;
+    }
+
+    // If a user clicks an operator after completing a previous equation
+    if (currentInput !== '' && previousInput !== '' && activeOperator) {
+        calculate();
     }
 
     activeOperator = operator;
