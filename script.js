@@ -7,7 +7,7 @@ const screen = document.getElementById('screen');
 function add(a, b) { return a + b; }
 function subtract(a, b) { return a - b; }
 function multiply(a, b) { return a * b; }
-function divide(a, b) { return b === 0 ? 'Error' : a / b; }
+function divide(a, b) { return a / b; }
 function modulo(a, b) { return a % b; }
 
 // 2. Typing Numbers
