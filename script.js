@@ -7,7 +7,8 @@ const screen = document.getElementById('screen');
 function add(a, b) { return a + b; }
 function subtract(a, b) { return a - b; }
 function multiply(a, b) { return a * b; }
-function divide(a, b) { return b === 0 ? 'Error' : a / b; }
+function divide(a, b) { return a / b; }
+function modulo(a, b) { return a % b; }
 
 // 2. Typing Numbers
 function appendValue(num) {
@@ -64,7 +65,14 @@ function calculate() {
         case '-': result = subtract(num1, num2); break;
         case '*': result = multiply(num1, num2); break;
         case '/': result = divide(num1, num2); break;
+        case '%': result = modulo(num1, num2); break;
         default: return;
+    }
+
+     // Check the result right after the switch
+    if (isError(result)) {
+        handleError();
+        return;
     }
 
     screen.value = result;
@@ -90,4 +98,14 @@ function deleteLast() {
         previousInput = '';
     }
     updateDisplay();
+}
+//  Check if a result is an error
+function isError(value) {
+    return value === 'Error';
+}
+ 
+//  Show error and reset the calculator
+function handleError() {
+    screen.value = 'Err';
+    clearScreen();
 }
