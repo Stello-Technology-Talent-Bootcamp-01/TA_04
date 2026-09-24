@@ -106,6 +106,6 @@ function isError(value) {
  
 //  Show error and reset the calculator
 function handleError() {
-    screen.value = 'Error';
+    screen.value = 'Err';
     clearScreen();
 }
