@@ -68,7 +68,6 @@ button:active {
 .btn-equal {
     background-color: #55efc4;
     grid-row: span 2;
-    height: 132px;
 }
 
 .btn-zero {
