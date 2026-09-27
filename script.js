@@ -3,6 +3,13 @@ let previousInput = '';
 let activeOperator = null;
 const screen = document.getElementById('screen');
 
+window.onload = function () {
+    const savedValue = localStorage.getItem('lastResult');
+    if (savedValue !== null) {
+        currentInput = savedValue;
+        updateDisplay();
+    }
+};
 // 1. Core Explicit Mathematical Functions
 function add(a, b) { return a + b; }
 function subtract(a, b) { return a - b; }
@@ -79,6 +86,7 @@ function calculate() {
     currentInput = result.toString();
     previousInput = '';
     activeOperator = null;
+    localStorage.setItem('lastResult', result.toString());
 }
 
 // 6. System Utilities
@@ -109,3 +117,20 @@ function handleError() {
     screen.value = 'Err';
     clearScreen();
 }
+
+window.addEventListener('keydown', function (event) {
+    if (event.key >= '0' && event.key <= '9') {
+        appendValue(event.key);
+    } else if (event.key === '.') {
+        appendValue('.');
+    } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/' || event.key === '%') {
+        setOperator(event.key);
+    } else if (event.key === 'Enter' || event.key === '=') {
+        event.preventDefault(); 
+        calculate();
+    } else if (event.key === 'Backspace') {
+        deleteLast();
+    } else if (event.key === 'Escape') {
+        clearScreen();
+    }
+});
